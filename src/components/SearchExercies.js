@@ -8,6 +8,7 @@ const SearchExercies = ({ bodyPart, setBodyPart, setExercises }) => {
   const [bodyParts, setBodyParts] = useState([]);
   useEffect(() => {
     const fetchExercisesData = async () => {
+      console.log(process.env.REACT_APP_RAPID_API_KEY, `jo`);
       const bodyPartsData = await fetchData(
         "https://exercisedb.p.rapidapi.com/exercises",
         exerciseOptions
@@ -24,14 +25,18 @@ const SearchExercies = ({ bodyPart, setBodyPart, setExercises }) => {
         "https://exercisedb.p.rapidapi.com/exercises",
         exerciseOptions
       );
-      const SearchExercie = exercisesData.filter((exercise) => {
-        exercise.name.toLowerCase().includes(search) ||
-          exercise.target.toLowerCase().includes(search) ||
-          exercise.equipment.toLowerCase().includes(search) ||
-          exercise.bodyPart.toLowerCase().includes(search);
-      });
+      console.log(exercisesData, "exercise data");
+      const searchedExercises = exercisesData.filter(
+        (item) =>
+          item.name.toLowerCase().includes(search) ||
+          item.target.toLowerCase().includes(search) ||
+          item.equipment.toLowerCase().includes(search) ||
+          item.bodyPart.toLowerCase().includes(search)
+      );
+
       setSearch("");
-      setExercises(SearchExercie);
+      console.log(searchedExercises);
+      setExercises(searchedExercises);
     }
   };
   return (
