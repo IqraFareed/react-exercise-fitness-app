@@ -3,7 +3,6 @@ import { Box, Stack, Typography, Pagination } from "@mui/material";
 import { exerciseOptions, fetchData } from "../utils/fetchData";
 import ExerciseCard from "./ExerciseCard";
 const Exercises = ({ exercises, setExercises, bodyPart }) => {
-  console.log(exercises, "exercise");
   const [currentPage, setCurrentPage] = useState(1);
   const exercisesPerPage = 9;
 
